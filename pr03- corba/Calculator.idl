@@ -1,0 +1,22 @@
+// module = creates a package/group in CORBA
+module CalcModule {
+
+    // interface = defines remote methods/services
+    interface Calculator {
+
+        // add() method for addition
+        // in = input parameter
+        // double = decimal number datatype
+        double add(in double a, in double b);
+
+        // sub() method for subtraction
+        double sub(in double a, in double b);
+
+        // mul() method for multiplication
+        double mul(in double a, in double b);
+
+        // div() method for division
+        double div(in double a, in double b);
+    };
+
+};
