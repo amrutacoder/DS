@@ -1,0 +1,304 @@
+Pr01
+Title: Socket Programming
+Aim: To develop any distributed application through implementing client-server communication
+programs based on Java Sockets.
+Objectives:
+1. To study inter-process communication
+2. To learn client server communication using socket
+Tools / Environment:
+Java Programming Environment, rmiregistry, jdk 1.8, Eclipse IDE.
+implementation
+The server run firsts and waits for client to connect.
+When the client runs, it connects to the server and  client sends a message to the server through socket connection.
+The server receives the message and sends response back to the client.
+This practical helps us understand inter-process communication in distributed systems
+What is Socket Programming?
+Socket Programming is used for communication between two systems over a network.
+•	Server → waits for client request 
+•	Client → sends request to server 
+Both communicate using:
+•	IP Address 
+•	Port Number 
+________________________________________
+Important Terms
+1. Socket
+A socket is an endpoint for communication between client and server.
+Simple meaning:
+It acts like a communication channel.
+________________________________________
+2. Port Number
+Port number identifies a specific application/service.
+Example:
+5000
+Here server listens on port 5000.
+________________________________________
+3. ServerSocket
+Used only by server side.
+Purpose:
+Waits for client connection.
+________________________________________
+4. Socket Class
+Used for actual communication between client and server.
+Inter Process Communication means:
+Communication between two or more processes/programs.
+ Inter Process Communication means:
+________________________________________
+Title: Remote Method Invocation
+Aim: To implement multi-threaded client/server Process communication using RMI.
+What are you doing in this assignment?”
+“Sir/Mam, in this practical we are implementing Remote Method Invocation using Java RMI.
+used for communication between two Java programs running on different computers or processes.
+Here client sends two numbers to server, and server performs addition and returns result to client.”
+In Your RMI Program
+•	Server is one process 
+•	Client is another process 
+Both communicate remotely using RMI.
+________________________________________
+What is RMI?
+RMI = Remote Method Invocation
+It is a Java technology that allows:
+one Java program to call methods of another Java program running on different machine/system.
+________________________________________
+Simple Meaning
+Client can call server methods remotely.
+Like:
+Client → calls add() method → Server executes → Result returned
+________________________________________
+Real Life Example
+Think like online calculator:
+•	You enter numbers 
+•	Server processes 
+•	Result comes back 
+________________________________________
+Main Components in RMI
+File	Purpose
+AddServerIntf.java	Remote Interface – declare methods
+AddServerImpl.java	Remote Object Implementation – implements methods
+AddServer.java	Server Program – registers remote objects with rmi reg
+AddClient.java	Client Program – client searches r o
+________________________________________
+Complete Flow
+Client requests addition
+↓
+RMI registry finds remote object
+↓
+Server executes add() method
+↓
+Result returned to client
+What is RMI Registry?
+RMI Registry is:
+a naming service used to store and locate remote objects
+Server registers object using:
+Naming.rebind("AddServer", obj);
+Client searches object using:
+Naming.lookup("rmi://localhost/AddServer");
+
+Assignment 3
+Title: Common Object Request Broker Architecture (CORBA)
+Aim: To develop any distributed application with CORBA program using JAVA IDL.
+
+Imagine you have a calculator program written in Java that runs on Computer A. Now imagine someone sitting at Computer B, in another city, wants to use that calculator. They want to call methods like add(10, 5) and get the result 15 — even though the calculator code isn't on their machine.
+How do you make that happen?
+That's exactly the problem CORBA solves.
+
+It is a technology used in:
+Distributed Systems
+to allow:
+✔ client and server
+✔ running on different machines
+✔ written in different languages to communicate with each other.
+CORBA acts like a: middleman / broker between client and server.
+Features:
+Platform independent
+Language independent
+ORB = Object Request Broker
+It:
+✔ receives client request
+✔ finds server object
+✔ sends response back
+ 
+
+What is IDL?
+Interface Definition Language
+Used to define remote methods.
+POA?"
+"POA stands for Portable Object Adapter. It's the part of the ORB that manages servant objects on the server side. It receives incoming requests, finds the right servant, and invokes the method. 
+
+Assignment 4: MPI (Message Passing Interface)
+To find the sum of N elements in an array by distributing elements among n processors, and computing partial (intermediate) sums at each processor.
+MPI means Message Passing Interface
+MPI (Message Passing Interface) is a standard programming model used for communication between multiple processes in a distributed system.
+It is used in distributed systems where:
+•	Each processor works separately 
+•	They communicate using messages 
+•	Each processor computes part of the work
+Idea of This Program
+Assume:
+•	Array = [1, 2, 3, 4, 5, 6] 
+•	Processors = 3 
+Then:
+Processor	Data	Partial Sum
+P0	1, 2	3
+P1	3, 4	7
+P2	5, 6	11
+👉 Final Sum = 3 + 7 + 11 = 21
+Input
+•	Number of elements (N) 
+•	Array elements 
+•	Number of processors (n) 
+________________________________________
+📤 Output
+•	Data assigned to each processor 
+•	Intermediate sum at each processor 
+•	Final sum
+
+MPI.COMM_WORLD?
+👉 MPI.COMM_WORLD is the default communicator in MPI.
+It represents:
+✔ All processes running your program
+So if you run:
+mpjrun.sh -np 4 mpisum
+Then:
+COMM_WORLD = {P0, P1, P2, P3}
+1. Rank()
+👉 Used to get the ID of a process
+2. Size()
+👉 Used to get total number of processes
+3. Send()
+4. Recv()
+👉 Used to receive data from another process
+Bcast() (Broadcast)
+👉 Used to send same data to all processes
+
+Send() Syntax
+MPI.COMM_WORLD.Send(buffer, 0, count, MPI.INT, destination, tag);
+________________________________________
+📌 Meaning:
+Part	Meaning
+buffer	data to send
+0	starting index
+count	number of elements
+MPI.INT	data type
+destination	receiver process rank
+tag	message id
+
+/*open eclipse and create java project inside that create mpisum.java
+downlaod mpjexpress - create home/amruta and paste all files from that downloaded zip...
+right click on java project - properties- java build path- classpath - add external jar- 
+naviaget to Navigate to /home/amruta/lib/mpj.jar - apply and close
+imp - Delete module-info.java if it exists
+
+open terminal - 
+go to the path where mpirmi.java file exist(cd "")
+Set MPJ_HOME - export MPJ_HOME=/home/amruta
+Add MPJ bin to PATH - export PATH=$PATH:$MPJ_HOME/bin---- not required	
+compile - javac -cp .:$MPJ_HOME/lib/mpj.jar mpisum.java
+run - mpjrun.sh -np 4 mpisum */
+
+Assignment 5: Clock Synchronization
+Berkeley Algorithm for Clock Synchronization
+What is Clock Synchronization?
+In distributed systems:
+👉 Every computer has its own clock
+👉 But clocks are NOT perfectly same
+👉 So time may differ in each node
+Node A → 10:00  
+Node B → 10:05  
+Node C → 09:58
+👉 All show different time ❌
+👉 This creates confusion in system
+________________________________________
+🟢 Solution → Berkeley Algorithm
+👉 It is used to synchronize all clocks to a common time
+________________________________________
+🧠 Main Idea
+✔ One node becomes Master (Coordinator)
+✔ It collects time from all nodes
+✔ It calculates average time
+✔ It sends correction to all nodes
+ 
+Pr06
+Assignment: Mutual Exclusion (Token Ring Algorithm)
+To implement the Token Ring Mutual Exclusion algorithm, where only one process at a time can enter the Critical Section using a circulating token.
+What is Mutual Exclusion?
+Mutual exclusion means:
+Only one process can use a shared resource at a time (A shared resource is a resource that multiple processes want to access.)
+Other processes must wait
+Only one person can use ATM at a time
+Token Ring Algorithm idea:
+•	All processes are arranged in a ring (circle) 
+•	A special message called TOKEN circulates in the ring 
+•	Only the process holding the TOKEN can enter the critical section 
+•	After finishing, it passes the TOKEN to the next process 
+“Whoever has the token gets permission to use the resource.”
+
+Real-life Analogy
+Think of a microphone in a group discussion:
+•	Only the person holding mic can speak (Critical Section) 
+•	After speaking, mic is passed to next person (Token passing)
+
+Pr07
+Assignment: Election Algorithms
+Leader Election using Bully and Ring Algorithm
+Leader Selection 
+In a distributed system:
+👉 There are many nodes
+👉 One node must act as leader (coordinator)
+👉 If leader fails → new leader must be selected
+Why election is needed?
+✔ Coordination of tasks
+✔ Avoid conflict
+✔ Manage system properly
+Bully algorithm 
+Bully Algorithm is a leader election algorithm in distributed systems
+👉 Used when current coordinator (leader) fails
+Each process has a unique ID
+✔ Highest ID process becomes leader
+✔ If a process detects failure, it “calls higher processes”
+✔ Highest alive process “wins” the election (bully behavior)
+P1, P2, P3, P4, P5
+👉 P5 is initial leader
+P5 (Leader) → FAIL ❌
+Step 2: P2 detects failure
+P2 starts election:
+P2 → sends message to P3, P4, P5
+Step 3: Responses
+P3 → alive  
+P4 → alive  
+P5 → no response (dead)
+Higher ID always wins → "Bully wins the fight"
+Ring Algorithm
+Ring Algorithm is a leader election algorithm in distributed systems
+👉 All processes are arranged in a logical circle (ring)
+👉 Election message moves around the ring
+Highest ID process becomes leader
+Pr08
+A Web Service is a way for two different applications to communicate over the internet.
+________________________________________
+🧠 Simple Meaning
+It allows:
+•	One system to provide service 
+•	Another system to use (consume) that service
+Types of Web Services
+1. SOAP Web Service- SOAP = Simple Object Access Protocol
+It is a web service communication protocol used to exchange data between applications over a network.
+•	Uses XML 
+•	Heavy but secure 
+•	Old style 
+2. REST Web Service ⭐ (most used)
+•	Uses HTTP (GET, POST) 
+•	Lightweight 
+•	Easy and fast
+In real web services:
+•	Server runs on internet (API) 
+•	Client sends HTTP request 
+•	Server sends response (JSON/XML)
+
+A web service is a system where a client sends a request and a server returns a response over a network.”
+Your program roles:
+Web Service Concept	Your Program
+Client	Java program (taking input)
+Server	Logic performing addition
+Request	User inputs (a, b)
+Response	Sum result
+
